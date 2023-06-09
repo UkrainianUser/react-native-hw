@@ -1,5 +1,5 @@
+import { useState } from "react";
 import {
-	Button,
 	StyleSheet,
 	Text,
 	TextInput,
@@ -12,17 +12,32 @@ const onPressRegistration = () => {
 };
 
 const RegistrationScreen = () => {
+	const [login, onChangeLogin] = useState("");
+	const [email, onChangeEmail] = useState("");
+	const [password, onChangePassword] = useState("");
+
 	return (
 		<>
 			<Text style={styles.title}>Реєстрація</Text>
 			<View style={styles.form}>
-				<TextInput style={styles.input} value="login" placeholder="Логін" />
 				<TextInput
 					style={styles.input}
-					value="email"
+					onChangeText={onChangeLogin}
+					value={login}
+					placeholder="Логін"
+				/>
+				<TextInput
+					style={styles.input}
+					onChangeText={onChangeEmail}
+					value={email}
 					placeholder="Адреса електронної пошти"
 				/>
-				<TextInput style={styles.input} value="password" placeholder="Пароль" />
+				<TextInput
+					style={styles.input}
+					onChangeText={onChangePassword}
+					value={password}
+					placeholder="Пароль"
+				/>
 				<TouchableHighlight onPress={onPressRegistration}>
 					<View style={styles.btn}>
 						<Text style={styles.btnText}>Зареєстуватися</Text>
