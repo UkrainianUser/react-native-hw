@@ -1,5 +1,6 @@
 import { ImageBackground, StyleSheet, View } from "react-native";
-import RegistrationScreen from "./Screens/RegistrationScreen";
+import LoginScreen from "./Screens/LoginScreen";
+// import RegistrationScreen from "./Screens/RegistrationScreen";
 
 export default function App() {
 	return (
@@ -9,7 +10,8 @@ export default function App() {
 			style={styles.imageBg}
 		>
 			<View style={styles.container}>
-				<RegistrationScreen />
+				{/* <RegistrationScreen /> */}
+				<LoginScreen />
 			</View>
 		</ImageBackground>
 	);
