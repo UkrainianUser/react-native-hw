@@ -26,12 +26,12 @@ const LoginScreen = ({ navigation }) => {
 	};
 
 	return (
-		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-			<ImageBackground
-				source={require("../assets/image-bg.png")}
-				resizeMode="cover"
-				style={styles.imageBg}
-			>
+		<ImageBackground
+			source={require("../assets/image-bg.png")}
+			resizeMode="cover"
+			style={styles.imageBg}
+		>
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<View style={styles.container}>
 					<View style={styles.loginWrapper}>
 						<Text style={styles.title}>Увійти</Text>
@@ -78,8 +78,8 @@ const LoginScreen = ({ navigation }) => {
 						</KeyboardAvoidingView>
 					</View>
 				</View>
-			</ImageBackground>
-		</TouchableWithoutFeedback>
+			</TouchableWithoutFeedback>
+		</ImageBackground>
 	);
 };
 

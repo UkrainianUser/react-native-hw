@@ -27,12 +27,12 @@ const RegistrationScreen = ({ navigation }) => {
 	};
 
 	return (
-		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-			<ImageBackground
-				source={require("../assets/image-bg.png")}
-				resizeMode="cover"
-				style={styles.imageBg}
-			>
+		<ImageBackground
+			source={require("../assets/image-bg.png")}
+			resizeMode="cover"
+			style={styles.imageBg}
+		>
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<View style={styles.container}>
 					<View style={styles.registrationWrapper}>
 						<View style={styles.avatar}>
@@ -86,8 +86,8 @@ const RegistrationScreen = ({ navigation }) => {
 						</KeyboardAvoidingView>
 					</View>
 				</View>
-			</ImageBackground>
-		</TouchableWithoutFeedback>
+			</TouchableWithoutFeedback>
+		</ImageBackground>
 	);
 };
 
