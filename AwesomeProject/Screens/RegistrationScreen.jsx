@@ -28,6 +28,11 @@ const RegistrationScreen = () => {
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 			<View style={styles.registrationWrapper}>
+				<View style={styles.avatar}>
+					<View style={styles.avatarBtn}>
+						<Text style={styles.avatarText}>+</Text>
+					</View>
+				</View>
 				<Text style={styles.title}>Реєстрація</Text>
 				<KeyboardAvoidingView
 					behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -79,12 +84,35 @@ export default RegistrationScreen;
 
 const styles = StyleSheet.create({
 	registrationWrapper: {
+		position: "relative",
 		backgroundColor: "#ffffff",
 		height: 550,
 		justifyContent: "center",
 		alignItems: "center",
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
+	},
+	avatar: {
+		position: "absolute",
+		top: -60,
+		width: 120,
+		height: 120,
+		backgroundColor: "#f6f6f6",
+		borderRadius: 16,
+	},
+	avatarBtn: {
+		position: "absolute",
+		top: 80,
+		left: 108,
+		width: 25,
+		height: 25,
+		borderWidth: 2,
+		borderColor: "#ff6c00",
+		borderRadius: 25,
+	},
+	avatarText: {
+		color: "#ff6c00",
+		textAlign: "center",
 	},
 	title: {
 		fontWeight: 500,

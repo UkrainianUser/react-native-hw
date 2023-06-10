@@ -73,7 +73,9 @@ export default LoginScreen;
 const styles = StyleSheet.create({
 	loginWrapper: {
 		backgroundColor: "#ffffff",
-		height: 550,
+		height: 490,
+		paddingLeft: 16,
+		paddingRight: 16,
 		justifyContent: "center",
 		alignItems: "center",
 		borderTopLeftRadius: 25,
