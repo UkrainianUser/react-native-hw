@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+	ImageBackground,
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
@@ -15,7 +16,7 @@ const onPressLogin = () => {
 	alert("press login button");
 };
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
 	const [email, onChangeEmail] = useState("");
 	const [password, onChangePassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
@@ -26,44 +27,58 @@ const LoginScreen = () => {
 
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-			<View style={styles.loginWrapper}>
-				<Text style={styles.title}>Увійти</Text>
-				<KeyboardAvoidingView
-					behavior={Platform.OS === "ios" ? "padding" : "height"}
-				>
-					<View style={styles.form}>
-						<TextInput
-							style={styles.input}
-							onChangeText={onChangeEmail}
-							value={email}
-							placeholder="Адреса електронної пошти"
-						/>
-						<View style={styles.passwordInputContainer}>
-							<TextInput
-								style={styles.passwordInput}
-								onChangeText={onChangePassword}
-								value={password}
-								placeholder="Пароль"
-								secureTextEntry={!showPassword}
-							/>
-							<TouchableOpacity
-								style={styles.showPasswordButton}
-								onPress={togglePasswordVisibility}
-							>
-								<Text style={styles.showPasswordText}>
-									{showPassword ? "Приховати" : "Показати"}
-								</Text>
-							</TouchableOpacity>
-						</View>
-						<TouchableOpacity onPress={onPressLogin}>
-							<View style={styles.btn}>
-								<Text style={styles.btnText}>Увійти</Text>
+			<ImageBackground
+				source={require("../assets/image-bg.png")}
+				resizeMode="cover"
+				style={styles.imageBg}
+			>
+				<View style={styles.container}>
+					<View style={styles.loginWrapper}>
+						<Text style={styles.title}>Увійти</Text>
+						<KeyboardAvoidingView
+							behavior={Platform.OS === "ios" ? "padding" : "height"}
+						>
+							<View style={styles.form}>
+								<TextInput
+									style={styles.input}
+									onChangeText={onChangeEmail}
+									value={email}
+									placeholder="Адреса електронної пошти"
+								/>
+								<View style={styles.passwordInputContainer}>
+									<TextInput
+										style={styles.passwordInput}
+										onChangeText={onChangePassword}
+										value={password}
+										placeholder="Пароль"
+										secureTextEntry={!showPassword}
+									/>
+									<TouchableOpacity
+										style={styles.showPasswordButton}
+										onPress={togglePasswordVisibility}
+									>
+										<Text style={styles.showPasswordText}>
+											{showPassword ? "Приховати" : "Показати"}
+										</Text>
+									</TouchableOpacity>
+								</View>
+								<TouchableOpacity onPress={onPressLogin}>
+									<View style={styles.btn}>
+										<Text style={styles.btnText}>Увійти</Text>
+									</View>
+								</TouchableOpacity>
+								<TouchableOpacity
+									onPress={() => navigation.navigate("Registration")}
+								>
+									<Text style={styles.textLink}>
+										Немає акаунту? Зареєструватися
+									</Text>
+								</TouchableOpacity>
 							</View>
-						</TouchableOpacity>
-						<Text style={styles.textLink}>Немає акаунту? Зареєструватися</Text>
+						</KeyboardAvoidingView>
 					</View>
-				</KeyboardAvoidingView>
-			</View>
+				</View>
+			</ImageBackground>
 		</TouchableWithoutFeedback>
 	);
 };
@@ -71,6 +86,13 @@ const LoginScreen = () => {
 export default LoginScreen;
 
 const styles = StyleSheet.create({
+	imageBg: {
+		flex: 1,
+	},
+	container: {
+		flex: 1,
+		justifyContent: "flex-end",
+	},
 	loginWrapper: {
 		backgroundColor: "#ffffff",
 		height: 490,

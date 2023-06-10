@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+	ImageBackground,
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
@@ -15,7 +16,7 @@ const onPressRegistration = () => {
 	alert("Press Registration");
 };
 
-const RegistrationScreen = () => {
+const RegistrationScreen = ({ navigation }) => {
 	const [login, onChangeLogin] = useState("");
 	const [email, onChangeEmail] = useState("");
 	const [password, onChangePassword] = useState("");
@@ -27,55 +28,65 @@ const RegistrationScreen = () => {
 
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-			<View style={styles.registrationWrapper}>
-				<View style={styles.avatar}>
-					<View style={styles.avatarBtn}>
-						<Text style={styles.avatarText}>+</Text>
+			<ImageBackground
+				source={require("../assets/image-bg.png")}
+				resizeMode="cover"
+				style={styles.imageBg}
+			>
+				<View style={styles.container}>
+					<View style={styles.registrationWrapper}>
+						<View style={styles.avatar}>
+							<View style={styles.avatarBtn}>
+								<Text style={styles.avatarText}>+</Text>
+							</View>
+						</View>
+						<Text style={styles.title}>Реєстрація</Text>
+						<KeyboardAvoidingView
+							behavior={Platform.OS === "ios" ? "padding" : "height"}
+						>
+							<View style={styles.form}>
+								<TextInput
+									style={styles.input}
+									onChangeText={onChangeLogin}
+									value={login}
+									placeholder="Логін"
+								/>
+								<TextInput
+									style={styles.input}
+									onChangeText={onChangeEmail}
+									value={email}
+									placeholder="Адреса електронної пошти"
+								/>
+								<View style={styles.passwordInputContainer}>
+									<TextInput
+										style={styles.passwordInput}
+										onChangeText={onChangePassword}
+										value={password}
+										placeholder="Пароль"
+										secureTextEntry={!showPassword}
+									/>
+									<TouchableOpacity
+										style={styles.showPasswordButton}
+										onPress={togglePasswordVisibility}
+									>
+										<Text style={styles.showPasswordText}>
+											{showPassword ? "Приховати" : "Показати"}
+										</Text>
+									</TouchableOpacity>
+								</View>
+								<TouchableOpacity onPress={onPressRegistration}>
+									<View style={styles.btn}>
+										<Text style={styles.btnText}>Зареєстуватися</Text>
+									</View>
+								</TouchableOpacity>
+								<TouchableOpacity onPress={() => navigation.navigate("Login")}>
+									<Text style={styles.textLink}>Вже є акаунт? Увійти</Text>
+								</TouchableOpacity>
+							</View>
+						</KeyboardAvoidingView>
 					</View>
 				</View>
-				<Text style={styles.title}>Реєстрація</Text>
-				<KeyboardAvoidingView
-					behavior={Platform.OS === "ios" ? "padding" : "height"}
-				>
-					<View style={styles.form}>
-						<TextInput
-							style={styles.input}
-							onChangeText={onChangeLogin}
-							value={login}
-							placeholder="Логін"
-						/>
-						<TextInput
-							style={styles.input}
-							onChangeText={onChangeEmail}
-							value={email}
-							placeholder="Адреса електронної пошти"
-						/>
-						<View style={styles.passwordInputContainer}>
-							<TextInput
-								style={styles.passwordInput}
-								onChangeText={onChangePassword}
-								value={password}
-								placeholder="Пароль"
-								secureTextEntry={!showPassword}
-							/>
-							<TouchableOpacity
-								style={styles.showPasswordButton}
-								onPress={togglePasswordVisibility}
-							>
-								<Text style={styles.showPasswordText}>
-									{showPassword ? "Приховати" : "Показати"}
-								</Text>
-							</TouchableOpacity>
-						</View>
-						<TouchableOpacity onPress={onPressRegistration}>
-							<View style={styles.btn}>
-								<Text style={styles.btnText}>Зареєстуватися</Text>
-							</View>
-						</TouchableOpacity>
-						<Text style={styles.textLink}>Вже є акаунт? Увійти</Text>
-					</View>
-				</KeyboardAvoidingView>
-			</View>
+			</ImageBackground>
 		</TouchableWithoutFeedback>
 	);
 };
@@ -83,6 +94,13 @@ const RegistrationScreen = () => {
 export default RegistrationScreen;
 
 const styles = StyleSheet.create({
+	imageBg: {
+		flex: 1,
+	},
+	container: {
+		flex: 1,
+		justifyContent: "flex-end",
+	},
 	registrationWrapper: {
 		position: "relative",
 		backgroundColor: "#ffffff",

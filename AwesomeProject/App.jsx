@@ -1,30 +1,20 @@
-import { ImageBackground, StyleSheet, View } from "react-native";
-// import LoginScreen from "./Screens/LoginScreen";
-// import RegistrationScreen from "./Screens/RegistrationScreen";
+import "react-native-gesture-handler";
+import RegistrationScreen from "./Screens/RegistrationScreen";
+import LoginScreen from "./Screens/LoginScreen";
 import PostScreen from "./Screens/PostsScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const MainStack = createStackNavigator();
 
 export default function App() {
 	return (
-		<ImageBackground
-			source={require("./assets/image-bg.png")}
-			resizeMode="cover"
-			style={styles.imageBg}
-		>
-			<View style={styles.container}>
-				{/* <RegistrationScreen /> */}
-				{/* <LoginScreen /> */}
-				<PostScreen />
-			</View>
-		</ImageBackground>
+		<NavigationContainer>
+			<MainStack.Navigator initialRouteName="Login">
+				<MainStack.Screen name="Registration" component={RegistrationScreen} />
+				<MainStack.Screen name="Login" component={LoginScreen} />
+				<MainStack.Screen name="Posts" component={PostScreen} />
+			</MainStack.Navigator>
+		</NavigationContainer>
 	);
 }
-
-const styles = StyleSheet.create({
-	imageBg: {
-		flex: 1,
-	},
-	container: {
-		flex: 1,
-		justifyContent: "flex-end",
-	},
-});
