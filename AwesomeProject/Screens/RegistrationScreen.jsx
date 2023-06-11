@@ -12,15 +12,24 @@ import {
 	View,
 } from "react-native";
 
-const onPressRegistration = () => {
-	alert("Press Registration");
-};
-
 const RegistrationScreen = ({ navigation }) => {
-	const [login, onChangeLogin] = useState("");
-	const [email, onChangeEmail] = useState("");
-	const [password, onChangePassword] = useState("");
+	const [login, setLogin] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+
+	const onPressRegistration = () => {
+		const userData = {
+			Login: login,
+			Email: email,
+			Password: password,
+		};
+		console.log(userData);
+
+		setLogin("");
+		setEmail("");
+		setPassword("");
+	};
 
 	const togglePasswordVisibility = () => {
 		setShowPassword(!showPassword);
@@ -47,20 +56,21 @@ const RegistrationScreen = ({ navigation }) => {
 							<View style={styles.form}>
 								<TextInput
 									style={styles.input}
-									onChangeText={onChangeLogin}
+									onChangeText={setLogin}
 									value={login}
 									placeholder="Логін"
 								/>
 								<TextInput
 									style={styles.input}
-									onChangeText={onChangeEmail}
+									onChangeText={setEmail}
 									value={email}
 									placeholder="Адреса електронної пошти"
+									keyboardType="email-address"
 								/>
 								<View style={styles.passwordInputContainer}>
 									<TextInput
 										style={styles.passwordInput}
-										onChangeText={onChangePassword}
+										onChangeText={setPassword}
 										value={password}
 										placeholder="Пароль"
 										secureTextEntry={!showPassword}

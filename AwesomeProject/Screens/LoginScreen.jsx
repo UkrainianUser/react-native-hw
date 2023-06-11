@@ -12,14 +12,21 @@ import {
 	View,
 } from "react-native";
 
-const onPressLogin = () => {
-	alert("press login button");
-};
-
 const LoginScreen = ({ navigation }) => {
-	const [email, onChangeEmail] = useState("");
-	const [password, onChangePassword] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+
+	const onPressLogin = () => {
+		const userData = {
+			Email: email,
+			Password: password,
+		};
+		console.log(userData);
+
+		setEmail("");
+		setPassword("");
+	};
 
 	const togglePasswordVisibility = () => {
 		setShowPassword(!showPassword);
@@ -41,14 +48,15 @@ const LoginScreen = ({ navigation }) => {
 							<View style={styles.form}>
 								<TextInput
 									style={styles.input}
-									onChangeText={onChangeEmail}
+									onChangeText={setEmail}
 									value={email}
 									placeholder="Адреса електронної пошти"
+									keyboardType="email-address"
 								/>
 								<View style={styles.passwordInputContainer}>
 									<TextInput
 										style={styles.passwordInput}
-										onChangeText={onChangePassword}
+										onChangeText={setPassword}
 										value={password}
 										placeholder="Пароль"
 										secureTextEntry={!showPassword}
