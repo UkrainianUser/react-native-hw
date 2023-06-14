@@ -10,6 +10,9 @@ const ProfileScreen = () => {
 		>
 			<View style={styles.container}>
 				<View style={styles.profileWrapper}>
+					<TouchableOpacity style={styles.logImg}>
+						<Image source={require("../assets/log-out.png")} />
+					</TouchableOpacity>
 					<View style={styles.wrapper}>
 						<View style={styles.avatar}>
 							<View style={styles.avatarBtn}>
@@ -17,7 +20,6 @@ const ProfileScreen = () => {
 							</View>
 						</View>
 						<Text style={styles.title}>UserName</Text>
-
 						<View style={styles.postList}>
 							<View style={styles.postItem}>
 								<Image
@@ -89,6 +91,7 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
 	},
+	logImg: {},
 	wrapper: {
 		alignItems: "center",
 	},
@@ -130,7 +133,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		borderRadius: 8,
-		marginBottom: 8,
 		marginBottom: 8,
 	},
 	postDiscript: {
