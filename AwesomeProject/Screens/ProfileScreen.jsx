@@ -1,4 +1,5 @@
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const ProfileScreen = () => {
 	return (
@@ -23,8 +24,23 @@ const ProfileScreen = () => {
 									style={styles.postImg}
 									source={require("../assets/adaptive-icon.png")}
 								/>
-								<Text>Descript</Text>
-								<View></View>
+								<Text style={styles.postDiscript}>Descript</Text>
+								<View style={styles.postBar}>
+									<View style={styles.postBarStat}>
+										<TouchableOpacity style={styles.postBarDuo}>
+											<Image source={require("../assets/message-circle.png")} />
+											<Text>0</Text>
+										</TouchableOpacity>
+										<TouchableOpacity style={styles.postBarDuo}>
+											<Image source={require("../assets/thumbs-up.png")} />
+											<Text>0</Text>
+										</TouchableOpacity>
+									</View>
+									<TouchableOpacity style={styles.postBarDuo}>
+										<Image source={require("../assets/map-pin.png")} />
+										<Text>Ukraine</Text>
+									</TouchableOpacity>
+								</View>
 							</View>
 						</View>
 					</View>
@@ -67,7 +83,8 @@ const styles = StyleSheet.create({
 	profileWrapper: {
 		position: "relative",
 		backgroundColor: "#ffffff",
-		height: 550,
+		minHeight: 550,
+		marginTop: 148,
 		justifyContent: "space-between",
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
@@ -103,6 +120,9 @@ const styles = StyleSheet.create({
 		marginTop: 92,
 		marginBottom: 32,
 	},
+	postItem: {
+		marginBottom: 36,
+	},
 	postImg: {
 		backgroundColor: "#f6f6f6",
 		maxWidth: 342,
@@ -113,6 +133,22 @@ const styles = StyleSheet.create({
 		marginBottom: 8,
 		marginBottom: 8,
 	},
+	postDiscript: {
+		marginBottom: 12,
+	},
+	postBar: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+	},
+	postBarStat: {
+		flexDirection: "row",
+		gap: 28,
+	},
+	postBarDuo: {
+		flexDirection: "row",
+		gap: 8,
+	},
+
 	footer: {
 		height: 82,
 		borderTopWidth: 3,
