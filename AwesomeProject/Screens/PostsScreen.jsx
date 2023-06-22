@@ -1,4 +1,34 @@
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image, StyleSheet, Text, View } from "react-native";
+import Home from "./Home";
+import CreatePostsScreen from "./CreatePostsScreen";
+import ProfileScreen from "./ProfileScreen";
+
+function Posts() {
+	return (
+		<View>
+			<Image style={styles.btnImg} source={require("../assets/grid.png")} />
+		</View>
+	);
+}
+
+function CreatePosts() {
+	return (
+		<View style={styles.btn}>
+			<Image style={styles.btnImg} source={require("../assets/Union.png")} />
+		</View>
+	);
+}
+
+function Profile() {
+	return (
+		<View>
+			<Image style={styles.btnImg} source={require("../assets/user.png")} />
+		</View>
+	);
+}
+
+const Tabs = createBottomTabNavigator();
 
 const PostScreen = () => {
 	return (
@@ -12,18 +42,35 @@ const PostScreen = () => {
 			</View>
 			<View style={styles.main}></View>
 			<View style={styles.footer}>
-				<View>
-					<Image style={styles.btnImg} source={require("../assets/grid.png")} />
-				</View>
-				<View style={styles.btn}>
-					<Image
-						style={styles.btnImg}
-						source={require("../assets/Union.png")}
+				<Tabs.Navigator
+					screenOptions={{
+						tabBarShowLabel: false,
+						headerTitle: "",
+						initialRouteName: "Posts",
+					}}
+				>
+					<Tabs.Screen
+						name="Posts"
+						component={Home}
+						options={{
+							tabBarIcon: () => Posts(),
+						}}
 					/>
-				</View>
-				<View>
-					<Image style={styles.btnImg} source={require("../assets/user.png")} />
-				</View>
+					<Tabs.Screen
+						name="CreatePosts"
+						component={CreatePostsScreen}
+						options={{
+							tabBarIcon: () => CreatePosts(),
+						}}
+					/>
+					<Tabs.Screen
+						name="Profile"
+						component={ProfileScreen}
+						options={{
+							tabBarIcon: () => Profile(),
+						}}
+					/>
+				</Tabs.Navigator>
 			</View>
 		</View>
 	);
@@ -59,8 +106,6 @@ const styles = StyleSheet.create({
 	},
 	footer: {
 		height: 82,
-		borderTopWidth: 3,
-		borderTopColor: "#f6f6f6",
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",

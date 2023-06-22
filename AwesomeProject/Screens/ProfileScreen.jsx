@@ -91,7 +91,9 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: 25,
 		borderTopRightRadius: 25,
 	},
-	logImg: {},
+	logImg: {
+		position: "absolute",
+	},
 	wrapper: {
 		alignItems: "center",
 	},
